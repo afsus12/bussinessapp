@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 class ProfileCreationController extends GetxController {
   var creationKey = GlobalKey<FormState>();
   var fname = new TextEditingController().obs;
+  var midname = new TextEditingController().obs;
+  var compname = new TextEditingController().obs;
+  var comptype = new TextEditingController().obs;
+  var compadd = new TextEditingController().obs;
+  var compphone = new TextEditingController().obs;
+  var compemail = new TextEditingController().obs;
   var lname = new TextEditingController().obs;
   var gender = new TextEditingController().obs;
   var phone = new TextEditingController().obs;

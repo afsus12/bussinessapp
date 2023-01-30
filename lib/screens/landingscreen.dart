@@ -1,3 +1,5 @@
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../controllers/googlesignincontroller.dart';
 import '../controllers/signincontroller.dart';
 import '../globals/authservice.dart';
@@ -23,19 +25,24 @@ class landingpage extends GetView<GoogleSignInController> {
     Get.put(GoogleSignInController());
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             SizedBox(
               height: screenHeight * 0.1,
             ),
+            SvgPicture.asset(
+              'assets/photo.svg',
+              width: 200,
+              height: screenHeight * 0.37,
+            ),
             SizedBox(
-              height: screenHeight * 0.05,
+              height: screenHeight * 0.01,
             ),
             BigText(
-              text: "Party with our Dj",
+              text: "Business Lunchpad",
               color: Colors.black,
-              size: screenHeight * 0.06,
+              size: screenHeight * 0.05,
             ),
             SizedBox(
               height: screenHeight * 0.02,

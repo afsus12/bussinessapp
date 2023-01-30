@@ -61,30 +61,6 @@ class ProfileCreationScreen extends GetView<ProfileCreationController> {
                     size: screenHeight * 0.04,
                   ),
                   SizedBox(
-                    height: screenHeight * .02,
-                  ),
-                  Center(
-                    child: GestureDetector(
-                        onTap: () {
-                          pickUploadProfilePic();
-                        },
-                        child: controller.profilePicLink.value == ""
-                            ? CircleAvatar(
-                                backgroundColor: MyColors.inputcolorfill,
-                                radius: screenWidht * 0.2,
-                                child: Icon(
-                                  Icons.upload,
-                                  size: screenWidht * 0.12,
-                                  color: Colors.white,
-                                ),
-                              )
-                            : CircleAvatar(
-                                backgroundColor: MyColors.inputcolorfill,
-                                radius: screenWidht * 0.2,
-                                foregroundImage: NetworkImage(
-                                    controller.profilePicLink.value))),
-                  ),
-                  SizedBox(
                     height: screenWidht * 0.06,
                   ),
                   SizedBox(
@@ -98,6 +74,21 @@ class ProfileCreationScreen extends GetView<ProfileCreationController> {
                         },
                         validate: (v) => controller.validateThese(v!),
                         labelText: "First Name",
+                        icon: Icons.person),
+                  ),
+                  SizedBox(
+                    height: screenWidht * 0.02,
+                  ),
+                  SizedBox(
+                    width: screenWidht * 0.90,
+                    child: Myinput(
+                        controller: controller.midname.value,
+                        onChanged: (value) {
+                          final val = TextSelection.collapsed(
+                              offset: controller.midname.value.text.length);
+                          controller.midname.value.selection = val;
+                        },
+                        labelText: "Middle Name",
                         icon: Icons.person),
                   ),
                   SizedBox(
@@ -211,6 +202,9 @@ class ProfileCreationScreen extends GetView<ProfileCreationController> {
                         ]),
                   ),
                   SizedBox(
+                    height: screenWidht * 0.02,
+                  ),
+                  SizedBox(
                       width: screenWidht * 0.90,
                       child: Myinput(
                         controller: controller.stateValue.value,
@@ -262,60 +256,96 @@ class ProfileCreationScreen extends GetView<ProfileCreationController> {
                     ],
                   ),
                   SizedBox(
+                    height: screenWidht * 0.09,
+                  ),
+                  Text(
+                    "Business Details",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(height: screenWidht * 0.04),
+                  SizedBox(
+                    width: screenWidht * 0.90,
+                    child: Myinput(
+                        controller: controller.compname.value,
+                        onChanged: (value) {
+                          final val = TextSelection.collapsed(
+                              offset: controller.compname.value.text.length);
+                          controller.compname.value.selection = val;
+                        },
+                        validate: (v) => controller.validateThese(v!),
+                        labelText: "Company Name",
+                        icon: Icons.business_center),
+                  ),
+                  SizedBox(
                     height: screenWidht * 0.02,
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: screenWidht * 0.01),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Sign up as?",
-                            style: TextStyle(
-                                fontSize: 17, fontFamily: "Roboto-Regular")),
-                        SizedBox(
-                          height: screenHeight * 0.07,
-                          child: ToggleButtons(
-                            borderRadius: BorderRadius.circular(12),
-                            isSelected: controller.isSelected4,
-                            selectedColor: Colors.white,
-                            color: Colors.black,
-                            fillColor: MyColors.MainOrange,
-                            children: const [
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 12),
-                                child: Center(
-                                  child: Text('  Client ',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: "Roboto-Regular")),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 5),
-                                child: Center(
-                                  child: Text('    Dj     ',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: "Roboto-Regular")),
-                                ),
-                              ),
-                            ],
-                            onPressed: (int index) {
-                              controller.isSelected4[index] = true;
-                              if (index == 0) {
-                                controller.isDj.value = false;
-                                controller.isSelected4[1] = false;
-                              } else {
-                                controller.isDj.value = true;
-                                controller.isSelected4[0] = false;
-                              }
-                            },
-                          ),
-                        )
-                      ],
-                    ),
+                  SizedBox(
+                    width: screenWidht * 0.90,
+                    child: Myinput(
+                        controller: controller.comptype.value,
+                        onChanged: (value) {
+                          final val = TextSelection.collapsed(
+                              offset: controller.comptype.value.text.length);
+                          controller.comptype.value.selection = val;
+                        },
+                        validate: (v) => controller.validateThese(v!),
+                        labelText:
+                            "Company Type(LLC/C Corp/Sole Proprietorship, Etc.)",
+                        icon: Icons.business_center),
+                  ),
+                  SizedBox(
+                    height: screenWidht * 0.02,
+                  ),
+                  SizedBox(
+                    width: screenWidht * 0.90,
+                    child: Myinput(
+                        controller: controller.compadd.value,
+                        onChanged: (value) {
+                          final val = TextSelection.collapsed(
+                              offset: controller.compadd.value.text.length);
+                          controller.compadd.value.selection = val;
+                        },
+                        validate: (v) => controller.validateThese(v!),
+                        labelText: "Company Address",
+                        icon: Icons.business_center),
+                  ),
+                  SizedBox(
+                    height: screenWidht * 0.02,
+                  ),
+                  SizedBox(
+                    width: screenWidht * 0.90,
+                    child: Myinput(
+                        controller: controller.compemail.value,
+                        onChanged: (value) {
+                          final val = TextSelection.collapsed(
+                              offset: controller.compemail.value.text.length);
+                          controller.compemail.value.selection = val;
+                        },
+                        validate: (v) => controller.validateThese(v!),
+                        labelText: "Business Email",
+                        icon: Icons.business_center),
+                  ),
+                  SizedBox(
+                    height: screenWidht * 0.02,
+                  ),
+                  SizedBox(
+                      width: screenWidht * 0.90,
+                      child: Myinput(
+                        controller: controller.compphone.value,
+                        onChanged: (v) {
+                          final val = TextSelection.collapsed(
+                              offset: controller.compphone.value.text.length);
+                          controller.compphone.value.selection = val;
+                        },
+                        keyboardType: TextInputType.phone,
+                        labelText: "Business  Phone Number",
+                        icon: Icons.business_center,
+                      )),
+                  SizedBox(
+                    height: screenWidht * 0.02,
                   ),
                   SizedBox(
                     height: screenWidht * 0.05,
@@ -324,11 +354,7 @@ class ProfileCreationScreen extends GetView<ProfileCreationController> {
                     onPressed: () async {
                       bool isValid =
                           controller.creationKey.currentState!.validate();
-                      if (controller.profilePicLink.value == "") {
-                        Get.snackbar("Erreur", "upload  profile picture",
-                            snackPosition: SnackPosition.BOTTOM);
-                        return;
-                      }
+
                       if (isValid) {
                         final uid = FirebaseAuth.instance.currentUser!.uid;
                         final email = FirebaseAuth.instance.currentUser!.email;
@@ -345,6 +371,7 @@ class ProfileCreationScreen extends GetView<ProfileCreationController> {
                             .set({
                               "id": uid,
                               "fname": controller.fname.value.text,
+                              "midname": controller.fname.value.text,
                               "lname": controller.lname.value.text,
                               "email": email,
                               "birthdate": controller.birthdate.value.text,
@@ -354,11 +381,11 @@ class ProfileCreationScreen extends GetView<ProfileCreationController> {
                               "state": controller.stateValue.value.text,
                               "city": controller.cityValue.value.text,
                               "zip": controller.zip.value.text,
-                              "isDj": controller.isDj.toString(),
-                              "position": {
-                                "longtitude": 100,
-                                "latititude": 100,
-                              }
+                              "compname": controller.compname.value.text,
+                              "compadd": controller.compadd.value.text,
+                              "compemail": controller.compemail.value.text,
+                              "comptype": controller.comptype.value.text,
+                              "compphone": controller.compphone.value.text
                             })
                             .then((value) => Get.to(() => MenuScreen()))
                             .catchError((onError) {

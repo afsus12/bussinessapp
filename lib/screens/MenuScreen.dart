@@ -1,73 +1,90 @@
 import 'package:business_launchpad/controllers/forgotpasscontroller.dart';
+import 'package:business_launchpad/controllers/menuscreencontroller.dart';
+import 'package:business_launchpad/widgets/buttonwithicon.dart';
+import 'package:business_launchpad/widgets/menu.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../utils/myColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MenuScreen extends GetView<ForgotPassController> {
+class MenuScreen extends GetView<menuscreencontroller> {
   const MenuScreen({Key? key}) : super(key: key);
+
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     double screenWidht = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    Get.put(ForgotPassController());
+    Get.put(menuscreencontroller());
     return Scaffold(
-      body: Obx(() => Stack(
-            children: [
-              Positioned(
-                bottom: 0,
-                left: 0,
-                child: SizedBox(
-                  width: size.width,
-                  height: 80,
-                  child: Stack(
-                    children: [
-                      CustomPaint(
-                        size: Size(size.width, 80),
-                        painter: BNBCustonPainter(),
-                      ),
-                      Center(
-                        heightFactor: 0.6,
-                        child: FloatingActionButton(
-                          onPressed: () {},
-                          elevation: 8.0,
-                          child: const Icon(Icons.gps_fixed),
-                        ),
-                      ),
-                      SizedBox(
-                        width: size.width,
-                        height: 80,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.home),
-                              onPressed: () {},
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.person),
-                              onPressed: () {},
-                            ),
-                            SizedBox(width: size.width * 0.20),
-                            IconButton(
-                              icon: const Icon(Icons.bookmark),
-                              onPressed: () {},
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.notifications),
-                              color: const Color(0xFFAEAEAE),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+        body: Stack(children: [
+      AnimatedContainer(
+        width: screenWidht,
+        curve: Curves.easeInOutBack,
+        height: screenHeight,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              // BlendMode.colorDodge
+              image: AssetImage('assets/splash.jpg'),
+              fit: BoxFit.fitHeight),
+        ),
+        duration: const Duration(seconds: 20),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            SizedBox(
+              height: screenHeight * .1,
+            ),
+            Row(
+              children: [
+                circularMenu(),
+                /*   CircleAvatar(
+                  backgroundColor: MyColors.mainblack,
+                  child: Icon(
+                    Icons.music_note,
+                    color: MyColors.MainYellow,
                   ),
-                ),
-              ),
-            ],
-          )),
-    );
+                ), */
+                Text(
+                    FirebaseAuth.instance.currentUser!.displayName != null
+                        ? "  Welcome ${controller.fullName[0]}"
+                        : "  Welcome user",
+                    style: TextStyle(
+                        decoration: TextDecoration.none,
+                        color: Colors.white70,
+                        fontFamily: 'Exo-Black',
+                        fontSize: 22)),
+              ],
+            ),
+            Text(
+              "Let’s create your first Company",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  decoration: TextDecoration.none,
+                  color: Colors.white,
+                  fontFamily: 'Exo-Black',
+                  fontSize: 46,
+                  height: 1.2),
+            ),
+            SizedBox(
+              height: screenHeight * .08,
+            ),
+            ButtonWithIcon(
+              onPressed: () {},
+              text: "Get Started",
+              height: screenHeight * 0.09,
+              textcolor: Colors.white,
+              mainColor: MyColors.ButtonSignin,
+            ),
+            SizedBox(
+              height: screenHeight * .04,
+            ),
+          ],
+        ),
+      )
+    ]));
   }
 }
 

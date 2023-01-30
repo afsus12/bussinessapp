@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Dj Music',
+      title: 'Business Lunchpad',
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           backgroundColor: MyColors.MainOrange,
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         // GetPage(name: "/musicSteps", page: () => const musicSteps()),
         // GetPage(name: "/stepView", page: () => const stepView())
       ],
-      home: landingpage(),
+      home: AuthService().handleAuthState(),
     );
   }
 }
