@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Business Lunchpad',
       theme: ThemeData(
+        useMaterial3: true,
         appBarTheme: AppBarTheme(
           backgroundColor: MyColors.MainOrange,
         ),
